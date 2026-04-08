@@ -1,0 +1,69 @@
+﻿Active code page: 65001
+ERROR|COMPILE_TIME_ERROR|UNDEFINED_NAMED_PARAMETER|C:\\apk pemas\\flutter_application_1\\lib\\screens\\create_report_screen.dart|102|9|16|The named parameter 'locationSettings' isn't defined.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\main.dart|90|28|2|Unnecessary use of multiple underscores.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\main.dart|90|32|3|Unnecessary use of multiple underscores.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\main.dart|91|41|2|Unnecessary use of multiple underscores.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\main.dart|101|28|2|Unnecessary use of multiple underscores.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\main.dart|101|32|3|Unnecessary use of multiple underscores.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\main.dart|102|41|2|Unnecessary use of multiple underscores.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\main.dart|137|47|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\create_report_screen.dart|270|65|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\create_report_screen.dart|287|62|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\create_report_screen.dart|313|53|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\create_report_screen.dart|353|58|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\create_report_screen.dart|359|63|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\create_report_screen.dart|395|48|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\create_report_screen.dart|400|50|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\create_report_screen.dart|412|61|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|LINT|USE_BUILD_CONTEXT_SYNCHRONOUSLY|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|23|35|7|Don't use 'BuildContext's across async gaps.
+INFO|LINT|USE_BUILD_CONTEXT_SYNCHRONOUSLY|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|24|33|7|Don't use 'BuildContext's across async gaps.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|84|49|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|105|45|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|108|47|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|116|51|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|242|26|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|253|28|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|287|39|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|331|41|2|Unnecessary use of multiple underscores.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|331|45|3|Unnecessary use of multiple underscores.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\dashboard_screen.dart|368|34|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|LINT|USE_BUILD_CONTEXT_SYNCHRONOUSLY|C:\\apk pemas\\flutter_application_1\\lib\\screens\\history_screen.dart|24|35|7|Don't use 'BuildContext's across async gaps.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\history_screen.dart|133|49|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\screens\\history_screen.dart|182|61|2|Unnecessary use of multiple underscores.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\screens\\history_screen.dart|182|65|3|Unnecessary use of multiple underscores.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\history_screen.dart|236|58|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\history_screen.dart|296|30|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\login_screen.dart|89|43|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\login_screen.dart|123|47|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|LINT|USE_BUILD_CONTEXT_SYNCHRONOUSLY|C:\\apk pemas\\flutter_application_1\\lib\\screens\\main_screen.dart|33|41|7|Don't use 'BuildContext's across async gaps.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\main_screen.dart|52|35|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\main_screen.dart|128|46|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|LINT|USE_BUILD_CONTEXT_SYNCHRONOUSLY|C:\\apk pemas\\flutter_application_1\\lib\\screens\\notification_screen.dart|23|41|7|Don't use 'BuildContext's across async gaps.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\notification_screen.dart|68|45|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\notification_screen.dart|100|49|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\notification_screen.dart|138|50|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\notification_screen.dart|143|59|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\notification_screen.dart|146|51|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\notification_screen.dart|159|58|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\notification_screen.dart|160|56|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\profile_screen.dart|47|43|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\profile_screen.dart|50|47|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\profile_screen.dart|202|39|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\register_screen.dart|99|49|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\register_screen.dart|116|43|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\register_screen.dart|146|47|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|LINT|USE_BUILD_CONTEXT_SYNCHRONOUSLY|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|22|35|7|Don't use 'BuildContext's across async gaps.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|68|51|2|Unnecessary use of multiple underscores.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|68|55|3|Unnecessary use of multiple underscores.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|86|44|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|88|44|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|102|51|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|152|49|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|300|58|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|306|44|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|323|50|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|355|49|2|Unnecessary use of multiple underscores.
+INFO|LINT|UNNECESSARY_UNDERSCORES|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|355|53|3|Unnecessary use of multiple underscores.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|433|42|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\screens\\report_detail_screen.dart|449|42|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
+INFO|HINT|DEPRECATED_MEMBER_USE|C:\\apk pemas\\flutter_application_1\\lib\\utils\\app_theme.dart|114|33|11|'withOpacity' is deprecated and shouldn't be used. Use .withValues() to avoid precision loss.
