@@ -2,26 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // ===== COLORS =====
-  static const Color primary = Color(0xFF2E7D32);
-  static const Color primaryLight = Color(0xFF4CAF50);
-  static const Color primaryDark = Color(0xFF1B5E20);
-  static const Color accent = Color(0xFF66BB6A);
-  static const Color background = Color(0xFFF5F7F5);
+  // ===== COLORS — Refined, warm & natural palette =====
+  static const Color primary = Color(0xFF1B8A5A);
+  static const Color primaryLight = Color(0xFF34C785);
+  static const Color primaryDark = Color(0xFF0F6B42);
+  static const Color accent = Color(0xFF2DD4A8);
+  static const Color background = Color(0xFFF7F8FA);
   static const Color surface = Color(0xFFFFFFFF);
   static const Color cardBg = Color(0xFFFFFFFF);
-  static const Color textPrimary = Color(0xFF1A1A2E);
-  static const Color textSecondary = Color(0xFF6B7280);
-  static const Color textLight = Color(0xFF9CA3AF);
-  static const Color danger = Color(0xFFEF4444);
-  static const Color warning = Color(0xFFF59E0B);
-  static const Color info = Color(0xFF3B82F6);
-  static const Color success = Color(0xFF10B981);
+  static const Color textPrimary = Color(0xFF1A1D26);
+  static const Color textSecondary = Color(0xFF6E7787);
+  static const Color textLight = Color(0xFFA0A8B8);
+  static const Color danger = Color(0xFFE53E3E);
+  static const Color warning = Color(0xFFED8936);
+  static const Color info = Color(0xFF4299E1);
+  static const Color success = Color(0xFF38A169);
 
-  // Status colors
-  static const Color statusMenunggu = Color(0xFFF59E0B);
-  static const Color statusDiproses = Color(0xFF3B82F6);
-  static const Color statusSelesai = Color(0xFF10B981);
+  // Status colors — distinct, accessible
+  static const Color statusMenunggu = Color(0xFFED8936);
+  static const Color statusDiproses = Color(0xFF4299E1);
+  static const Color statusSelesai = Color(0xFF38A169);
 
   static Color getStatusColor(String status) {
     switch (status) {
@@ -39,7 +39,7 @@ class AppTheme {
   static IconData getStatusIcon(String status) {
     switch (status) {
       case 'menunggu':
-        return Icons.hourglass_top_rounded;
+        return Icons.schedule_rounded;
       case 'diproses':
         return Icons.engineering_rounded;
       case 'selesai':
@@ -51,58 +51,82 @@ class AppTheme {
 
   // ===== GRADIENTS =====
   static const LinearGradient primaryGradient = LinearGradient(
-    colors: [Color(0xFF2E7D32), Color(0xFF66BB6A)],
+    colors: [Color(0xFF1B8A5A), Color(0xFF2DD4A8)],
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
   );
 
   static const LinearGradient darkGradient = LinearGradient(
-    colors: [Color(0xFF1B5E20), Color(0xFF2E7D32)],
+    colors: [Color(0xFF0F3D2C), Color(0xFF1B8A5A)],
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
   );
 
+  static const LinearGradient heroGradient = LinearGradient(
+    colors: [Color(0xFF0F3D2C), Color(0xFF1B6B4A), Color(0xFF1B8A5A)],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
+
+  static const LinearGradient shimmerGradient = LinearGradient(
+    colors: [Color(0xFFE8ECF0), Color(0xFFF5F7FA), Color(0xFFE8ECF0)],
+    begin: Alignment.centerLeft,
+    end: Alignment.centerRight,
+  );
+
   // ===== TEXT STYLES =====
-  static TextStyle get headingLarge => GoogleFonts.poppins(
+  static TextStyle get headingLarge => GoogleFonts.plusJakartaSans(
         fontSize: 28,
         fontWeight: FontWeight.bold,
         color: textPrimary,
+        letterSpacing: -0.5,
       );
 
-  static TextStyle get headingMedium => GoogleFonts.poppins(
+  static TextStyle get headingMedium => GoogleFonts.plusJakartaSans(
         fontSize: 22,
-        fontWeight: FontWeight.w600,
+        fontWeight: FontWeight.w700,
         color: textPrimary,
+        letterSpacing: -0.3,
       );
 
-  static TextStyle get headingSmall => GoogleFonts.poppins(
-        fontSize: 18,
+  static TextStyle get headingSmall => GoogleFonts.plusJakartaSans(
+        fontSize: 17,
         fontWeight: FontWeight.w600,
         color: textPrimary,
       );
 
   static TextStyle get bodyLarge => GoogleFonts.inter(
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: FontWeight.normal,
         color: textPrimary,
+        height: 1.5,
       );
 
   static TextStyle get bodyMedium => GoogleFonts.inter(
-        fontSize: 14,
+        fontSize: 13,
         fontWeight: FontWeight.normal,
         color: textSecondary,
+        height: 1.4,
       );
 
   static TextStyle get bodySmall => GoogleFonts.inter(
-        fontSize: 12,
-        fontWeight: FontWeight.normal,
+        fontSize: 11,
+        fontWeight: FontWeight.w500,
         color: textLight,
       );
 
-  static TextStyle get buttonText => GoogleFonts.poppins(
-        fontSize: 16,
+  static TextStyle get buttonText => GoogleFonts.plusJakartaSans(
+        fontSize: 15,
         fontWeight: FontWeight.w600,
         color: Colors.white,
+        letterSpacing: 0.3,
+      );
+
+  static TextStyle get labelMedium => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: textSecondary,
+        letterSpacing: 0.5,
       );
 
   // ===== DECORATIONS =====
@@ -111,9 +135,35 @@ class AppTheme {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 12,
+            color: const Color(0xFF1A1D26).withOpacity(0.04),
+            blurRadius: 16,
             offset: const Offset(0, 4),
+            spreadRadius: 0,
+          ),
+          BoxShadow(
+            color: const Color(0xFF1A1D26).withOpacity(0.02),
+            blurRadius: 4,
+            offset: const Offset(0, 1),
+            spreadRadius: 0,
+          ),
+        ],
+      );
+
+  static BoxDecoration get elevatedCardDecoration => BoxDecoration(
+        color: cardBg,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xFF1A1D26).withOpacity(0.06),
+            blurRadius: 24,
+            offset: const Offset(0, 8),
+            spreadRadius: 0,
+          ),
+          BoxShadow(
+            color: const Color(0xFF1A1D26).withOpacity(0.02),
+            blurRadius: 6,
+            offset: const Offset(0, 2),
+            spreadRadius: 0,
           ),
         ],
       );
@@ -126,18 +176,18 @@ class AppTheme {
     return InputDecoration(
       labelText: label,
       hintText: hint,
-      prefixIcon: Icon(icon, color: primary),
-      labelStyle: GoogleFonts.inter(color: textSecondary),
-      hintStyle: GoogleFonts.inter(color: textLight),
+      prefixIcon: Icon(icon, color: primary, size: 20),
+      labelStyle: GoogleFonts.inter(color: textSecondary, fontSize: 14),
+      hintStyle: GoogleFonts.inter(color: textLight, fontSize: 14),
       filled: true,
-      fillColor: const Color(0xFFF9FAFB),
+      fillColor: const Color(0xFFF7F8FA),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
         borderSide: BorderSide.none,
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: Color(0xFFE5E7EB)),
+        borderSide: const BorderSide(color: Color(0xFFE8ECF0), width: 1.5),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
@@ -145,7 +195,11 @@ class AppTheme {
       ),
       errorBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(14),
-        borderSide: const BorderSide(color: danger),
+        borderSide: const BorderSide(color: danger, width: 1.5),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(color: danger, width: 2),
       ),
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
     );
@@ -153,11 +207,13 @@ class AppTheme {
 
   // ===== THEME DATA =====
   static ThemeData get themeData => ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.green,
         scaffoldBackgroundColor: background,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.transparent,
           elevation: 0,
+          scrolledUnderElevation: 0,
           centerTitle: true,
           titleTextStyle: headingSmall.copyWith(color: Colors.white),
           iconTheme: const IconThemeData(color: Colors.white),
@@ -180,6 +236,22 @@ class AppTheme {
             ),
             textStyle: buttonText,
             elevation: 0,
+            shadowColor: Colors.transparent,
+          ),
+        ),
+        cardTheme: CardThemeData(
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          color: cardBg,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: const Color(0xFFF7F8FA),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(14),
+            borderSide: BorderSide.none,
           ),
         ),
       );

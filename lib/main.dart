@@ -61,8 +61,8 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
       duration: const Duration(milliseconds: 1200),
     );
-    _scaleAnim = Tween<double>(begin: 0.5, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.elasticOut),
+    _scaleAnim = Tween<double>(begin: 0.6, end: 1.0).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.easeOutBack),
     );
     _fadeAnim = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
@@ -118,55 +118,92 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: const BoxDecoration(gradient: AppTheme.darkGradient),
-        child: Center(
-          child: FadeTransition(
-            opacity: _fadeAnim,
-            child: ScaleTransition(
-              scale: _scaleAnim,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: 120,
-                    height: 120,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    child: const Icon(
-                      Icons.delete_outline_rounded,
-                      size: 64,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    'Trashpot',
-                    style: AppTheme.headingLarge.copyWith(
-                      color: Colors.white,
-                      fontSize: 36,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Laporkan Sampah, Jaga Lingkungan',
-                    style: AppTheme.bodyMedium
-                        .copyWith(color: Colors.white70),
-                  ),
-                  const SizedBox(height: 48),
-                  const SizedBox(
-                    width: 32,
-                    height: 32,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 3,
-                    ),
-                  ),
-                ],
+        decoration: const BoxDecoration(gradient: AppTheme.heroGradient),
+        child: Stack(
+          children: [
+            // Decorative circles
+            Positioned(
+              top: -100,
+              right: -80,
+              child: Container(
+                width: 240,
+                height: 240,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white.withOpacity(0.04),
+                ),
               ),
             ),
-          ),
+            Positioned(
+              bottom: -120,
+              left: -60,
+              child: Container(
+                width: 300,
+                height: 300,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.white.withOpacity(0.03),
+                ),
+              ),
+            ),
+
+            Center(
+              child: FadeTransition(
+                opacity: _fadeAnim,
+                child: ScaleTransition(
+                  scale: _scaleAnim,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 100,
+                        height: 100,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.12),
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: Colors.white.withOpacity(0.15),
+                            width: 1.5,
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.eco_rounded,
+                          size: 48,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        'Trashpot',
+                        style: AppTheme.headingLarge.copyWith(
+                          color: Colors.white,
+                          fontSize: 34,
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        'Laporkan Sampah, Jaga Lingkungan',
+                        style: AppTheme.bodyMedium.copyWith(
+                          color: Colors.white.withOpacity(0.55),
+                          fontSize: 14,
+                        ),
+                      ),
+                      const SizedBox(height: 48),
+                      SizedBox(
+                        width: 28,
+                        height: 28,
+                        child: CircularProgressIndicator(
+                          color: Colors.white.withOpacity(0.6),
+                          strokeWidth: 2.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );

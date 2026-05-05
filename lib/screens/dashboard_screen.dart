@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/auth_provider.dart';
 import '../providers/report_provider.dart';
+import '../services/api_service.dart';
 import '../utils/app_theme.dart';
+import 'dart:io';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -32,28 +34,34 @@ class _DashboardScreenState extends State<DashboardScreen>
     final reportProvider = Provider.of<ReportProvider>(context);
 
     return Scaffold(
+      backgroundColor: AppTheme.background,
       body: RefreshIndicator(
         color: AppTheme.primary,
+        backgroundColor: Colors.white,
         onRefresh: () async {
           await reportProvider.fetchReports();
+          await authProvider.refreshProfile();
         },
         child: CustomScrollView(
+          physics: const BouncingScrollPhysics(
+            parent: AlwaysScrollableScrollPhysics(),
+          ),
           slivers: [
             // ===== HEADER =====
             SliverToBoxAdapter(
               child: Container(
                 decoration: const BoxDecoration(
-                  gradient: AppTheme.primaryGradient,
+                  gradient: AppTheme.heroGradient,
                   borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(30),
-                    bottomRight: Radius.circular(30),
+                    bottomLeft: Radius.circular(28),
+                    bottomRight: Radius.circular(28),
                   ),
                 ),
                 padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).padding.top + 16,
+                  top: MediaQuery.of(context).padding.top + 20,
                   left: 24,
                   right: 24,
-                  bottom: 32,
+                  bottom: 28,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,51 +69,43 @@ class _DashboardScreenState extends State<DashboardScreen>
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Halo! 👋',
-                              style: AppTheme.bodyMedium
-                                  .copyWith(color: Colors.white70),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              authProvider.user?.name ?? 'User',
-                              style: AppTheme.headingMedium
-                                  .copyWith(color: Colors.white),
-                            ),
-                          ],
-                        ),
-                        Container(
-                          width: 50,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            color: Colors.white.withOpacity(0.2),
-                            borderRadius: BorderRadius.circular(16),
-                          ),
-                          child: Center(
-                            child: Text(
-                              (authProvider.user?.name ?? 'U')
-                                  .substring(0, 1)
-                                  .toUpperCase(),
-                              style: AppTheme.headingMedium
-                                  .copyWith(color: Colors.white),
-                            ),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Halo! 👋',
+                                style: AppTheme.bodyMedium.copyWith(
+                                  color: Colors.white.withOpacity(0.6),
+                                  fontSize: 14,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                authProvider.user?.name ?? 'User',
+                                style: AppTheme.headingMedium.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 22,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ],
                           ),
                         ),
+                        _buildAvatar(authProvider),
                       ],
                     ),
-                    const SizedBox(height: 24),
-                    // Total Laporan Card
+                    const SizedBox(height: 22),
+
+                    // Total card
                     Container(
                       width: double.infinity,
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.all(18),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.15),
-                        borderRadius: BorderRadius.circular(20),
+                        color: Colors.white.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(18),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.2),
+                          color: Colors.white.withOpacity(0.12),
                         ),
                       ),
                       child: Row(
@@ -113,13 +113,13 @@ class _DashboardScreenState extends State<DashboardScreen>
                           Container(
                             padding: const EdgeInsets.all(12),
                             decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.2),
+                              color: Colors.white.withOpacity(0.15),
                               borderRadius: BorderRadius.circular(14),
                             ),
                             child: const Icon(
-                              Icons.assignment_outlined,
+                              Icons.assignment_rounded,
                               color: Colors.white,
-                              size: 28,
+                              size: 24,
                             ),
                           ),
                           const SizedBox(width: 16),
@@ -128,14 +128,17 @@ class _DashboardScreenState extends State<DashboardScreen>
                             children: [
                               Text(
                                 'Total Laporan',
-                                style: AppTheme.bodyMedium
-                                    .copyWith(color: Colors.white70),
+                                style: AppTheme.bodyMedium.copyWith(
+                                  color: Colors.white.withOpacity(0.6),
+                                ),
                               ),
-                              const SizedBox(height: 4),
+                              const SizedBox(height: 2),
                               Text(
                                 '${reportProvider.totalReports}',
-                                style: AppTheme.headingLarge
-                                    .copyWith(color: Colors.white),
+                                style: AppTheme.headingLarge.copyWith(
+                                  color: Colors.white,
+                                  fontSize: 28,
+                                ),
                               ),
                             ],
                           ),
@@ -150,23 +153,23 @@ class _DashboardScreenState extends State<DashboardScreen>
             // ===== STATUS CARDS =====
             SliverToBoxAdapter(
               child: Padding(
-                padding: const EdgeInsets.all(24),
+                padding: const EdgeInsets.fromLTRB(24, 24, 24, 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text('Ringkasan Status', style: AppTheme.headingSmall),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 14),
                     Row(
                       children: [
                         Expanded(
                           child: _StatusCard(
                             title: 'Menunggu',
                             count: reportProvider.menungguCount,
-                            icon: Icons.hourglass_top_rounded,
+                            icon: Icons.schedule_rounded,
                             color: AppTheme.statusMenunggu,
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: _StatusCard(
                             title: 'Diproses',
@@ -175,7 +178,7 @@ class _DashboardScreenState extends State<DashboardScreen>
                             color: AppTheme.statusDiproses,
                           ),
                         ),
-                        const SizedBox(width: 12),
+                        const SizedBox(width: 10),
                         Expanded(
                           child: _StatusCard(
                             title: 'Selesai',
@@ -186,41 +189,113 @@ class _DashboardScreenState extends State<DashboardScreen>
                         ),
                       ],
                     ),
-                    const SizedBox(height: 28),
-
-                    // ===== RECENT REPORTS =====
-                    Text('Laporan Terbaru', style: AppTheme.headingSmall),
-                    const SizedBox(height: 16),
-                    if (reportProvider.isLoading)
-                      const Center(
-                        child: Padding(
-                          padding: EdgeInsets.all(32),
-                          child: CircularProgressIndicator(
-                            color: AppTheme.primary,
-                          ),
-                        ),
-                      )
-                    else if (reportProvider.errorMessage != null)
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: AppTheme.cardDecoration,
-                        child: Text(
-                          reportProvider.errorMessage!,
-                          style: const TextStyle(color: AppTheme.danger),
-                        ),
-                      )
-                    else if (reportProvider.reports.isEmpty)
-                      _EmptyState()
-                    else
-                      ...reportProvider.reports.take(5).map((report) {
-                        return _RecentReportCard(report: report);
-                      }),
                   ],
                 ),
               ),
             ),
+
+            // ===== RECENT REPORTS =====
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(24, 24, 24, 16),
+                child: Text('Laporan Terbaru', style: AppTheme.headingSmall),
+              ),
+            ),
+
+            if (reportProvider.isLoading)
+              const SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.all(48),
+                  child: Center(
+                    child: CircularProgressIndicator(
+                      color: AppTheme.primary,
+                      strokeWidth: 3,
+                    ),
+                  ),
+                ),
+              )
+            else if (reportProvider.errorMessage != null)
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    decoration: AppTheme.cardDecoration,
+                    child: Row(
+                      children: [
+                        const Icon(Icons.error_outline,
+                            color: AppTheme.danger, size: 22),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            reportProvider.errorMessage!,
+                            style: AppTheme.bodyMedium
+                                .copyWith(color: AppTheme.danger),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            else if (reportProvider.reports.isEmpty)
+              SliverToBoxAdapter(child: _EmptyState())
+            else
+              SliverPadding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final report = reportProvider.reports[index];
+                      return _RecentReportCard(report: report);
+                    },
+                    childCount: reportProvider.reports.length > 5
+                        ? 5
+                        : reportProvider.reports.length,
+                  ),
+                ),
+              ),
+
+            // Bottom padding
+            const SliverToBoxAdapter(
+              child: SizedBox(height: 24),
+            ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildAvatar(AuthProvider authProvider) {
+    final photoPath = authProvider.localPhotoPath;
+    final hasPhoto = photoPath != null && File(photoPath).existsSync();
+
+    return Container(
+      width: 48,
+      height: 48,
+      decoration: BoxDecoration(
+        color: Colors.white.withOpacity(0.15),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: Colors.white.withOpacity(0.2),
+          width: 1.5,
+        ),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(14),
+        child: hasPhoto
+            ? Image.file(File(photoPath), fit: BoxFit.cover)
+            : Center(
+                child: Text(
+                  (authProvider.user?.name ?? 'U')
+                      .substring(0, 1)
+                      .toUpperCase(),
+                  style: AppTheme.headingSmall.copyWith(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
       ),
     );
   }
@@ -242,13 +317,17 @@ class _StatusCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: color.withOpacity(0.12),
+          width: 1.5,
+        ),
         boxShadow: [
           BoxShadow(
-            color: color.withOpacity(0.1),
+            color: color.withOpacity(0.06),
             blurRadius: 12,
             offset: const Offset(0, 4),
           ),
@@ -259,20 +338,23 @@ class _StatusCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withOpacity(0.08),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Icon(icon, color: color, size: 22),
+            child: Icon(icon, color: color, size: 20),
           ),
           const SizedBox(height: 10),
           Text(
             '$count',
-            style: AppTheme.headingMedium.copyWith(color: color),
+            style: AppTheme.headingMedium.copyWith(
+              color: color,
+              fontSize: 24,
+            ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 2),
           Text(
             title,
-            style: AppTheme.bodySmall,
+            style: AppTheme.bodySmall.copyWith(fontSize: 11),
             textAlign: TextAlign.center,
           ),
         ],
@@ -284,28 +366,39 @@ class _StatusCard extends StatelessWidget {
 class _EmptyState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 48),
-      decoration: AppTheme.cardDecoration,
-      child: Column(
-        children: [
-          Icon(
-            Icons.inbox_outlined,
-            size: 64,
-            color: AppTheme.textLight.withOpacity(0.5),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Belum ada laporan',
-            style: AppTheme.bodyLarge.copyWith(color: AppTheme.textSecondary),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Buat laporan pertamamu!',
-            style: AppTheme.bodyMedium,
-          ),
-        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 24),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.symmetric(vertical: 48),
+        decoration: AppTheme.cardDecoration,
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: AppTheme.primary.withOpacity(0.06),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.inbox_rounded,
+                size: 48,
+                color: AppTheme.primary.withOpacity(0.3),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Belum ada laporan',
+              style:
+                  AppTheme.bodyLarge.copyWith(color: AppTheme.textSecondary),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              'Buat laporan pertamamu!',
+              style: AppTheme.bodyMedium,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -326,25 +419,40 @@ class _RecentReportCard extends StatelessWidget {
       decoration: AppTheme.cardDecoration,
       child: Row(
         children: [
-          // Thumbnail
+          // Thumbnail — FIXED: Use ApiService.buildImageUrl
           ClipRRect(
             borderRadius: BorderRadius.circular(12),
             child: Container(
-              width: 60,
-              height: 60,
+              width: 58,
+              height: 58,
               color: AppTheme.background,
               child: report.fotoBefore.isNotEmpty
                   ? Image.network(
-                      '${report.fotoBefore.startsWith("http") ? "" : "http://10.0.2.2:8000/storage/"}${report.fotoBefore}',
+                      ApiService.buildImageUrl(report.fotoBefore),
                       fit: BoxFit.cover,
+                      loadingBuilder: (_, child, progress) {
+                        if (progress == null) return child;
+                        return Center(
+                          child: SizedBox(
+                            width: 20,
+                            height: 20,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: AppTheme.primary.withOpacity(0.3),
+                            ),
+                          ),
+                        );
+                      },
                       errorBuilder: (_, __, ___) => const Icon(
                         Icons.image_outlined,
                         color: AppTheme.textLight,
+                        size: 24,
                       ),
                     )
                   : const Icon(
                       Icons.image_outlined,
                       color: AppTheme.textLight,
+                      size: 24,
                     ),
             ),
           ),
@@ -358,6 +466,7 @@ class _RecentReportCard extends StatelessWidget {
                   report.deskripsi,
                   style: AppTheme.bodyLarge.copyWith(
                     fontWeight: FontWeight.w500,
+                    fontSize: 14,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -370,11 +479,12 @@ class _RecentReportCard extends StatelessWidget {
               ],
             ),
           ),
+          const SizedBox(width: 8),
           // Status Badge
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             decoration: BoxDecoration(
-              color: statusColor.withOpacity(0.1),
+              color: statusColor.withOpacity(0.08),
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
@@ -382,6 +492,7 @@ class _RecentReportCard extends StatelessWidget {
               style: AppTheme.bodySmall.copyWith(
                 color: statusColor,
                 fontWeight: FontWeight.w600,
+                fontSize: 11,
               ),
             ),
           ),

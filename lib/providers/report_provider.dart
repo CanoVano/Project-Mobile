@@ -80,7 +80,10 @@ class ReportProvider extends ChangeNotifier {
         longitude: longitude,
       );
 
-      if (data.containsKey('data') || data.containsKey('id')) {
+      if (data.containsKey('data') || 
+          data.containsKey('id') || 
+          data.containsKey('report') ||
+          (data.containsKey('message') && data['message'].toString().toLowerCase().contains('berhasil'))) {
         await fetchReports();
         _isLoading = false;
         notifyListeners();

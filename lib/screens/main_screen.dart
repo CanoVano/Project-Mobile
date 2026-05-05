@@ -49,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.06),
+              color: Colors.black.withOpacity(0.04),
               blurRadius: 20,
               offset: const Offset(0, -4),
             ),
@@ -57,30 +57,34 @@ class _MainScreenState extends State<MainScreen> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 _NavItem(
-                  icon: Icons.dashboard_rounded,
+                  icon: Icons.home_rounded,
+                  activeIcon: Icons.home_rounded,
                   label: 'Beranda',
                   isActive: _currentIndex == 0,
                   onTap: () => setState(() => _currentIndex = 0),
                 ),
                 _NavItem(
                   icon: Icons.add_circle_outline_rounded,
+                  activeIcon: Icons.add_circle_rounded,
                   label: 'Laporan',
                   isActive: _currentIndex == 1,
                   onTap: () => setState(() => _currentIndex = 1),
                 ),
                 _NavItem(
                   icon: Icons.history_rounded,
+                  activeIcon: Icons.history_rounded,
                   label: 'Riwayat',
                   isActive: _currentIndex == 2,
                   onTap: () => setState(() => _currentIndex = 2),
                 ),
                 _NavItem(
-                  icon: Icons.notifications_outlined,
+                  icon: Icons.notifications_none_rounded,
+                  activeIcon: Icons.notifications_rounded,
                   label: 'Notifikasi',
                   isActive: _currentIndex == 3,
                   onTap: () => setState(() => _currentIndex = 3),
@@ -88,6 +92,7 @@ class _MainScreenState extends State<MainScreen> {
                 ),
                 _NavItem(
                   icon: Icons.person_outline_rounded,
+                  activeIcon: Icons.person_rounded,
                   label: 'Profil',
                   isActive: _currentIndex == 4,
                   onTap: () => setState(() => _currentIndex = 4),
@@ -103,6 +108,7 @@ class _MainScreenState extends State<MainScreen> {
 
 class _NavItem extends StatelessWidget {
   final IconData icon;
+  final IconData activeIcon;
   final String label;
   final bool isActive;
   final VoidCallback onTap;
@@ -110,6 +116,7 @@ class _NavItem extends StatelessWidget {
 
   const _NavItem({
     required this.icon,
+    required this.activeIcon,
     required this.label,
     required this.isActive,
     required this.onTap,
@@ -123,9 +130,12 @@ class _NavItem extends StatelessWidget {
       behavior: HitTestBehavior.opaque,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        curve: Curves.easeOutCubic,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: isActive ? AppTheme.primary.withOpacity(0.1) : Colors.transparent,
+          color: isActive
+              ? AppTheme.primary.withOpacity(0.08)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(14),
         ),
         child: Column(
@@ -134,10 +144,15 @@ class _NavItem extends StatelessWidget {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                Icon(
-                  icon,
-                  color: isActive ? AppTheme.primary : AppTheme.textLight,
-                  size: 24,
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 200),
+                  child: Icon(
+                    isActive ? activeIcon : icon,
+                    key: ValueKey(isActive),
+                    color:
+                        isActive ? AppTheme.primary : AppTheme.textLight,
+                    size: 24,
+                  ),
                 ),
                 if (badge > 0)
                   Positioned(
@@ -145,19 +160,23 @@ class _NavItem extends StatelessWidget {
                     top: -4,
                     child: Container(
                       padding: const EdgeInsets.all(4),
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: AppTheme.danger,
                         shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white,
+                          width: 1.5,
+                        ),
                       ),
                       constraints: const BoxConstraints(
                         minWidth: 18,
                         minHeight: 18,
                       ),
                       child: Text(
-                        '$badge',
+                        badge > 9 ? '9+' : '$badge',
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 10,
+                          fontSize: 9,
                           fontWeight: FontWeight.bold,
                         ),
                         textAlign: TextAlign.center,
@@ -170,9 +189,11 @@ class _NavItem extends StatelessWidget {
             Text(
               label,
               style: TextStyle(
-                fontSize: 11,
-                fontWeight: isActive ? FontWeight.w600 : FontWeight.normal,
-                color: isActive ? AppTheme.primary : AppTheme.textLight,
+                fontSize: 10,
+                fontWeight:
+                    isActive ? FontWeight.w600 : FontWeight.w500,
+                color:
+                    isActive ? AppTheme.primary : AppTheme.textLight,
               ),
             ),
           ],

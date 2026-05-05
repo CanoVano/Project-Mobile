@@ -9,9 +9,22 @@ class ApiService {
   // Ganti dengan IP lokal komputer Anda jika test di HP asli
   // IP komputer saat ini: 172.31.1.105
   // Pastikan jalankan API backend dengan `php artisan serve --host=0.0.0.0`
-  static const String baseUrl = 'http://172.31.1.105:8000/api';
-  static const String storageUrl = 'http://172.31.1.105:8000/storage';
+  static const String baseUrl =
+      'http://192.168.1.6:8000/api';
+  static const String storageUrl =
+      'http://192.168.1.6:8000/storage';
   static const Duration _timeout = Duration(seconds: 15);
+
+  /// Build full image URL from a path.
+  /// If path already starts with http, return as-is.
+  /// Otherwise prepend storageUrl.
+  static String buildImageUrl(String path) {
+    if (path.isEmpty) return '';
+    if (path.startsWith('http')) return path;
+    // Remove leading slash if present to avoid double slashes
+    final cleanPath = path.startsWith('/') ? path.substring(1) : path;
+    return '$storageUrl/$cleanPath';
+  }
 
   static Future<String?> getToken() async {
     final prefs = await SharedPreferences.getInstance();
@@ -47,16 +60,18 @@ class ApiService {
     required String password,
     required String passwordConfirmation,
   }) async {
-    final response = await http.post(
-      Uri.parse('$baseUrl/register'),
-      headers: _headers(),
-      body: jsonEncode({
-        'name': name,
-        'email': email,
-        'password': password,
-        'password_confirmation': passwordConfirmation,
-      }),
-    ).timeout(_timeout);
+    final response = await http
+        .post(
+          Uri.parse('$baseUrl/register'),
+          headers: _headers(),
+          body: jsonEncode({
+            'name': name,
+            'email': email,
+            'password': password,
+            'password_confirmation': passwordConfirmation,
+          }),
+        )
+        .timeout(_timeout);
     return jsonDecode(response.body);
   }
 
@@ -64,23 +79,21 @@ class ApiService {
     required String email,
     required String password,
   }) async {
-    final response = await http.post(
-      Uri.parse('$baseUrl/login'),
-      headers: _headers(),
-      body: jsonEncode({
-        'email': email,
-        'password': password,
-      }),
-    ).timeout(_timeout);
+    final response = await http
+        .post(
+          Uri.parse('$baseUrl/login'),
+          headers: _headers(),
+          body: jsonEncode({'email': email, 'password': password}),
+        )
+        .timeout(_timeout);
     return jsonDecode(response.body);
   }
 
   static Future<void> logout() async {
     final token = await getToken();
-    await http.post(
-      Uri.parse('$baseUrl/logout'),
-      headers: _headers(token: token),
-    ).timeout(_timeout);
+    await http
+        .post(Uri.parse('$baseUrl/logout'), headers: _headers(token: token))
+        .timeout(_timeout);
     await removeToken();
   }
 
@@ -121,15 +134,16 @@ class ApiService {
 
   static Future<List<dynamic>> getReports() async {
     final token = await getToken();
-    final response = await http.get(
-      Uri.parse('$baseUrl/reports'),
-      headers: _headers(token: token),
-    ).timeout(_timeout);
-    
+    final response = await http
+        .get(Uri.parse('$baseUrl/reports'), headers: _headers(token: token))
+        .timeout(_timeout);
+
     if (response.statusCode != 200) {
-      throw Exception('Server mereturn status ${response.statusCode}: ${response.body}');
+      throw Exception(
+        'Server mereturn status ${response.statusCode}: ${response.body}',
+      );
     }
-    
+
     final data = jsonDecode(response.body);
     if (data is Map) {
       if (data.containsKey('data')) return data['data'];
@@ -141,10 +155,9 @@ class ApiService {
 
   static Future<Map<String, dynamic>> getReportDetail(int id) async {
     final token = await getToken();
-    final response = await http.get(
-      Uri.parse('$baseUrl/reports/$id'),
-      headers: _headers(token: token),
-    ).timeout(_timeout);
+    final response = await http
+        .get(Uri.parse('$baseUrl/reports/$id'), headers: _headers(token: token))
+        .timeout(_timeout);
     return jsonDecode(response.body);
   }
 
@@ -152,15 +165,19 @@ class ApiService {
 
   static Future<List<dynamic>> getNotifications() async {
     final token = await getToken();
-    final response = await http.get(
-      Uri.parse('$baseUrl/notifications'),
-      headers: _headers(token: token),
-    ).timeout(_timeout);
-    
+    final response = await http
+        .get(
+          Uri.parse('$baseUrl/notifications'),
+          headers: _headers(token: token),
+        )
+        .timeout(_timeout);
+
     if (response.statusCode != 200) {
-      throw Exception('Server mereturn status ${response.statusCode}: ${response.body}');
+      throw Exception(
+        'Server mereturn status ${response.statusCode}: ${response.body}',
+      );
     }
-    
+
     final data = jsonDecode(response.body);
     if (data is Map) {
       if (data.containsKey('data')) return data['data'];
@@ -172,20 +189,40 @@ class ApiService {
 
   static Future<void> markNotificationRead(int id) async {
     final token = await getToken();
-    await http.put(
-      Uri.parse('$baseUrl/notifications/$id/read'),
-      headers: _headers(token: token),
-    ).timeout(_timeout);
+    await http
+        .put(
+          Uri.parse('$baseUrl/notifications/$id/read'),
+          headers: _headers(token: token),
+        )
+        .timeout(_timeout);
   }
 
   // ==================== USER PROFILE ====================
 
   static Future<Map<String, dynamic>> getProfile() async {
     final token = await getToken();
-    final response = await http.get(
-      Uri.parse('$baseUrl/user'),
-      headers: _headers(token: token),
-    ).timeout(_timeout);
+    final response = await http
+        .get(Uri.parse('$baseUrl/user'), headers: _headers(token: token))
+        .timeout(_timeout);
+    return jsonDecode(response.body);
+  }
+
+  static Future<Map<String, dynamic>> updateProfile({
+    String? name,
+    String? email,
+  }) async {
+    final token = await getToken();
+    final body = <String, dynamic>{};
+    if (name != null && name.isNotEmpty) body['name'] = name;
+    if (email != null && email.isNotEmpty) body['email'] = email;
+
+    final response = await http
+        .post(
+          Uri.parse('$baseUrl/user/update'),
+          headers: _headers(token: token),
+          body: jsonEncode(body),
+        )
+        .timeout(_timeout);
     return jsonDecode(response.body);
   }
 }
