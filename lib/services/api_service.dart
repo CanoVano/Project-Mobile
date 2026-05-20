@@ -10,9 +10,9 @@ class ApiService {
   // IP komputer saat ini: 172.31.1.105
   // Pastikan jalankan API backend dengan `php artisan serve --host=0.0.0.0`
   static const String baseUrl =
-      'http://192.168.1.6:8000/api';
+      'https://pengaduan-masyarakat-production-4f9f.up.railway.app/api';
   static const String storageUrl =
-      'http://192.168.1.6:8000/storage';
+      'https://pengaduan-masyarakat-production-4f9f.up.railway.app/storage';
   static const Duration _timeout = Duration(seconds: 15);
 
   /// Build full image URL from a path.
